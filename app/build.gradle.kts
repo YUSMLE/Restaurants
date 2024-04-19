@@ -36,6 +36,7 @@ android {
     }
 }
 
+//noinspection GradleDependency
 dependencies {
 
     /* Testing */
@@ -45,44 +46,44 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.0-alpha03")
 
     /* AndroidX Support */
-    implementation("androidx.core:core-ktx:1.13.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.0-alpha02")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.recyclerview:recyclerview:1.4.0-alpha01")
+    implementation("androidx.core:core-ktx:1.2.0")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.0-rc01")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.recyclerview:recyclerview:1.2.0-beta02")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.4.0")
 
     /* Jetpack Lifecycle Component */
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-service:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-process:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-service:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-process:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0")
 
     /* Jetpack Navigation Component */
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.7.7")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.6.0")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.6.0")
 
     /* Jetpack Preference/DataStore Components */
     implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     /* Jetpack Room Database */
-    ksp("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    testImplementation("androidx.room:room-testing:2.6.1")
+    ksp("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    testImplementation("androidx.room:room-testing:2.5.2")
 
     /* Jetpack WorkManager Component */
-    implementation("androidx.work:work-runtime:2.9.0")
-    implementation("androidx.work:work-runtime-ktx:2.9.0")
-    implementation("androidx.work:work-gcm:2.9.0")
+    implementation("androidx.work:work-runtime:2.7.1")
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation("androidx.work:work-gcm:2.7.1")
 
     /* Kotlin Coroutines */
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
