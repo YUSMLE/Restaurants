@@ -1,6 +1,6 @@
 package com.yusmle.restaurants.features.restaurantslist.business
 
-data class RestaurantsSearchResult(
+data class RestaurantsSearchBundle(
     val hasNextPage: Boolean,
     val pagingMetaData: String?,
     val restaurants: List<Restaurant>

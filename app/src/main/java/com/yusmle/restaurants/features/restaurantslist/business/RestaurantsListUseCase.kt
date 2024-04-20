@@ -14,6 +14,6 @@ class RestaurantsListUseCase(
     )
 
     data class Output(
-        val restaurantsSearchResult: RestaurantsSearchResult
+        val restaurantsSearchBundle: RestaurantsSearchBundle
     )
 }

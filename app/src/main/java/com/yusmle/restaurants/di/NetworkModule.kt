@@ -2,6 +2,7 @@ package com.yusmle.restaurants.di
 
 import android.os.Build
 import com.yusmle.restaurants.Constants
+import com.yusmle.restaurants.features.restaurantslist.data.RestaurantApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,5 +41,9 @@ val networkModules = module {
             .client(get())
             .baseUrl(Constants.NETWORK_BASE_URL)
             .build()
+    }
+
+    single {
+        get<Retrofit>().create(RestaurantApiService::class.java)
     }
 }
