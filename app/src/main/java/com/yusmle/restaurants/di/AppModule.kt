@@ -7,6 +7,8 @@ import com.yusmle.restaurants.features.restaurantslist.data.RemoteDataSource
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantDatabaseDataMapper
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantNetworkDataMapper
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantRepositoryImpl
+import com.yusmle.restaurants.framework.memory.InMemoryLocationDataStore
+import com.yusmle.restaurants.framework.service.location.LocationDataStore
 import org.koin.dsl.module
 
 /**
@@ -40,5 +42,9 @@ val appModule = module {
 
     factory {
         RestaurantNetworkDataMapper()
+    }
+
+    single<LocationDataStore> {
+        InMemoryLocationDataStore()
     }
 }
