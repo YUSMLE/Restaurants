@@ -7,7 +7,7 @@ class RestaurantsListUseCase(
 ) : BaseUseCase<RestaurantsListUseCase.Input, RestaurantsListUseCase.Output> {
 
     override suspend fun execute(input: Input) =
-        Output(restaurantRepository.fetchRemoteRestaurantsList(input.pagingMetaData))
+        Output(restaurantRepository.fetchRemoteRestaurantsList(input.pagingMetaData, 0f, 0f))
 
     data class Input(
         val pagingMetaData: String?
