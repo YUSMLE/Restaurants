@@ -1,5 +1,7 @@
 package com.yusmle.restaurants.di
 
+import com.yusmle.restaurants.framework.database.AppDatabase
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
@@ -7,5 +9,11 @@ import org.koin.dsl.module
  */
 val databaseModule = module {
 
-    // TODO("Not yet implemented")
+    single {
+        AppDatabase.invoke(androidContext())
+    }
+
+    single {
+        get<AppDatabase>().restaurantDao()
+    }
 }
