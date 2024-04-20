@@ -12,13 +12,16 @@ interface RestaurantDao {
     suspend fun insertRestaurant(entity: RestaurantEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRestaurant(vararg entities: RestaurantEntity)
+    suspend fun insertRestaurants(vararg entities: RestaurantEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(entities: List<RestaurantEntity>)
 
     @Query("SELECT * FROM RestaurantEntity")
     suspend fun getAll(): List<RestaurantEntity>
+
+    @Query("SELECT * FROM RestaurantEntity WHERE name LIKE :name LIMIT 1")
+    suspend fun getRestaurantByName(name: String): RestaurantEntity?
 
     @Query("DELETE FROM RestaurantEntity")
     suspend fun deleteAll()
