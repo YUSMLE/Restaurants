@@ -1,7 +1,7 @@
 package com.yusmle.restaurants.features.restaurantslist.view
 
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
-import com.yusmle.restaurants.foundation.StatefulIntentViewModel
+import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
 
 class RestaurantsListViewModel(
     private val restaurantsListUseCase: RestaurantsListUseCase

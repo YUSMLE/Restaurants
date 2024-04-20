@@ -2,7 +2,7 @@ package com.yusmle.restaurants.features.restaurantslist.view
 
 import androidx.fragment.app.Fragment
 import com.yusmle.restaurants.R
-import com.yusmle.restaurants.foundation.BaseFragment
+import com.yusmle.restaurants.common.foundation.BaseFragment
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

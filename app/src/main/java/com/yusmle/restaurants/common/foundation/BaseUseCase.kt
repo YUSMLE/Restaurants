@@ -1,4 +1,4 @@
-package com.yusmle.restaurants.foundation
+package com.yusmle.restaurants.common.foundation
 
 interface BaseUseCase<INPUT, OUTPUT> {
 

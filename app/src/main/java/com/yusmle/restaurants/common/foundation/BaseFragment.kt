@@ -1,4 +1,4 @@
-package com.yusmle.restaurants.foundation
+package com.yusmle.restaurants.common.foundation
 
 import android.content.Context
 import android.os.Bundle

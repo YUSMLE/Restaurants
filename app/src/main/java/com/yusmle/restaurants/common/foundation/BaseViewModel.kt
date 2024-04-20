@@ -1,4 +1,4 @@
-package com.yusmle.restaurants.foundation
+package com.yusmle.restaurants.common.foundation
 
 import android.annotation.SuppressLint
 import androidx.core.util.Preconditions

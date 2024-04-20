@@ -1,6 +1,6 @@
 package com.yusmle.restaurants.features.restaurantslist.business
 
-import com.yusmle.restaurants.foundation.BaseUseCase
+import com.yusmle.restaurants.common.foundation.BaseUseCase
 
 class RestaurantsListUseCase(
     private val restaurantRepository: RestaurantRepository

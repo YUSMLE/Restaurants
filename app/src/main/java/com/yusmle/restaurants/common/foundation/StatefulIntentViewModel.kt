@@ -1,4 +1,4 @@
-package com.yusmle.restaurants.foundation
+package com.yusmle.restaurants.common.foundation
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope

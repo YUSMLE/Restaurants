@@ -1,4 +1,4 @@
-package com.yusmle.restaurants.foundation
+package com.yusmle.restaurants.common.foundation
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.yusmle.restaurants.common.viewBinding
 import com.yusmle.restaurants.databinding.ActivityMainBinding
-import com.yusmle.restaurants.foundation.BaseActivity
+import com.yusmle.restaurants.common.foundation.BaseActivity
 
 class MainActivity : BaseActivity() {
 
