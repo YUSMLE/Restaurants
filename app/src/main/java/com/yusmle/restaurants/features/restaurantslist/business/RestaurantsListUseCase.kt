@@ -4,7 +4,16 @@ import com.yusmle.restaurants.foundation.BaseUseCase
 
 class RestaurantsListUseCase(
     private val restaurantRepository: RestaurantRepository
-) : BaseUseCase<Unit, List<Restaurant>> {
+) : BaseUseCase<RestaurantsListUseCase.Input, RestaurantsListUseCase.Output> {
 
-    override suspend fun execute(input: Unit) = restaurantRepository.getPersistedRestaurantsList()
+    override suspend fun execute(input: Input) =
+        Output(restaurantRepository.fetchRemoteRestaurantsList(input.pagingMetaData))
+
+    data class Input(
+        val pagingMetaData: String?
+    )
+
+    data class Output(
+        val restaurantsSearchResult: RestaurantsSearchResult
+    )
 }
