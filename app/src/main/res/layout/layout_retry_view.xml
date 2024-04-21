@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/retryView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent"
+    tools:visibility="visible">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/retryIcon"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_failure" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/retryDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:text="@string/msg_failure_loading_data"
+        android:textAppearance="?textAppearanceBody1"
+        android:textColor="@color/md_grey_600" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/retryButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="0dp"
+        android:text="@string/retry_label"
+        android:textSize="14sp" />
+</LinearLayout>

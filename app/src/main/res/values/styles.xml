@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Circular Progress Bar -->
+    <style name="Widget.App.CircularProgressBar" parent="">
+        <item name="pb_indeterminate_mode">true</item>
+        <item name="pb_progressbar_color">?attr/colorPrimary</item>
+        <item name="pb_background_progressbar_color">@color/md_grey_100</item>
+        <item name="pb_progressbar_width">2dp</item>
+        <item name="pb_round_border">true</item>
+    </style>
+</resources>

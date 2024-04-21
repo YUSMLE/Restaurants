@@ -8,6 +8,12 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="loading">Loading…</string>
+    <string name="retry_label">Retry</string>
+
+    <string name="msg_failure_loading_data">Something went wrong with loading data!</string>
+    <string name="msg_empty_result">There is no result. \nPlease try another things.</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

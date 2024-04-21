@@ -9,3 +9,9 @@ val RestaurantsListViewState.currentRestaurants: List<Restaurant>
         is RestaurantsListViewState.Loaded -> restaurants
         is RestaurantsListViewState.Failed -> restaurants
     }
+
+fun List<Restaurant>.toListItem(): List<RestaurantListItem> {
+    return this.map {
+        RestaurantListItem.RestaurantItem(name = it.name)
+    }
+}
