@@ -106,4 +106,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi-adapters:1.14.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+
+    /* Others */
+    implementation("com.google.android.gms:play-services-location:18.0.0")
 }

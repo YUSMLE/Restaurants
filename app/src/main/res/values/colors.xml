@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#9D270D</color>
+    <color name="colorPrimaryDark">#8D230B</color>
+    <color name="colorAccent">#3D9AE3</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackgroundDark">#F7F7F7</color>
+    <color name="colorBackgroundDarker">#D2D2D2</color>
+    <color name="colorOverlayDim">#99000000</color> <!-- 60% Hex opacity percentage -->
+
+    <!-- Material Design Text Colors -->
+    <color name="md_grey_000">#F9F9F9</color>
+    <color name="md_grey_100">#EDEDED</color>
+    <color name="md_grey_200">#E1E1E1</color>
+    <color name="md_grey_300">#D3D3D3</color>
+    <color name="md_grey_400">#C4C4C4</color>
+    <color name="md_grey_500">#B3B3B3</color>
+    <color name="md_grey_600">#A0A0A0</color>
+    <color name="md_grey_700">#898989</color>
+    <color name="md_grey_800">#6C6C6C</color>
+    <color name="md_grey_900">#151515</color>
 </resources>
