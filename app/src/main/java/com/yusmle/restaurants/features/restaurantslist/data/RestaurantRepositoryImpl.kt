@@ -18,8 +18,8 @@ class RestaurantRepositoryImpl(
 
     override suspend fun fetchRemoteRestaurantsList(
         pagingMetaData: String?,
-        longitude: Float,
-        latitude: Float
+        longitude: Double,
+        latitude: Double
     ) = remoteDataSource.fetchRemoteRestaurantsList(pagingMetaData, longitude, latitude).let {
         RestaurantsSearchBundle(
             hasNextPage = it.pagingMeta.hasNextPage,

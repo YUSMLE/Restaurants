@@ -6,8 +6,8 @@ interface RestaurantRepository {
 
     suspend fun fetchRemoteRestaurantsList(
         pagingMetaData: String?,
-        longitude: Float,
-        latitude: Float
+        longitude: Double,
+        latitude: Double
     ): RestaurantsSearchBundle
 
     suspend fun deletePersistedRestaurantsList()

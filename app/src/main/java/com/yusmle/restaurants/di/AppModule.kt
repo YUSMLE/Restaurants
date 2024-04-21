@@ -9,6 +9,8 @@ import com.yusmle.restaurants.features.restaurantslist.data.RestaurantNetworkDat
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantRepositoryImpl
 import com.yusmle.restaurants.framework.memory.InMemoryLocationDataStore
 import com.yusmle.restaurants.framework.service.location.LocationDataStore
+import com.yusmle.restaurants.framework.service.location.LocationTrackerService
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 /**
@@ -38,6 +40,10 @@ val appModule = module {
 
     factory {
         RestaurantNetworkDataMapper()
+    }
+
+    single {
+        LocationTrackerService(androidContext())
     }
 
     single<LocationDataStore> {

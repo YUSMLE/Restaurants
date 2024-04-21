@@ -6,8 +6,8 @@ class RemoteDataSource(private val restaurantApiService: RestaurantApiService) :
 
     suspend fun fetchRemoteRestaurantsList(
         pagingMetaData: String?,
-        longitude: Float,
-        latitude: Float
+        longitude: Double,
+        latitude: Double
     ): RestaurantsSearchBundleResult {
         val locationString = longitude.toString().plus(",").plus(latitude.toString())
 

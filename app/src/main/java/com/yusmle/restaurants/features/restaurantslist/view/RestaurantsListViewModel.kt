@@ -1,10 +1,14 @@
 package com.yusmle.restaurants.features.restaurantslist.view
 
-import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
+import android.annotation.SuppressLint
 import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
+import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
+import com.yusmle.restaurants.framework.service.location.Location
+import com.yusmle.restaurants.framework.service.location.LocationTrackerService
 
 class RestaurantsListViewModel(
-    private val restaurantsListUseCase: RestaurantsListUseCase
+    private val restaurantsListUseCase: RestaurantsListUseCase,
+    private val locationTrackerService: LocationTrackerService
 ) : StatefulIntentViewModel<RestaurantsListUserIntention, RestaurantsListViewState>(
     RestaurantsListViewState.Init
 ) {
@@ -16,17 +20,21 @@ class RestaurantsListViewModel(
         sendIntent(RestaurantsListUserIntention.GetRestaurantsList)
     }
 
+    @SuppressLint("MissingPermission")
     override suspend fun handleIntent(intent: RestaurantsListUserIntention) {
         when (intent) {
             is RestaurantsListUserIntention.GetRestaurantsList,
             is RestaurantsListUserIntention.GetMoreRestaurantsList,
             is RestaurantsListUserIntention.RetryGettingRestaurantsList,
             is RestaurantsListUserIntention.RetryGettingMoreRestaurantsList,
-            is RestaurantsListUserIntention.RefreshRestaurantsList -> getRestaurantsList()
+            is RestaurantsListUserIntention.RefreshRestaurantsList ->
+                locationTrackerService.getLastLocation {
+                    getRestaurantsList(it)
+                }
         }
     }
 
-    private fun getRestaurantsList() {
+    private fun getRestaurantsList(location: Location?) {
         if (currentState is RestaurantsListViewState.Loading) return
 
         launch {
@@ -36,7 +44,11 @@ class RestaurantsListViewModel(
 
             runCatching {
                 restaurantsListUseCase.execute(
-                    RestaurantsListUseCase.Input(currentState.pagingMetaData)
+                    RestaurantsListUseCase.Input(
+                        currentState.pagingMetaData,
+                        location?.longitude ?: Double.MIN_VALUE,
+                        location?.latitude ?: Double.MAX_VALUE
+                    )
                 )
             }.fold({
                 setState {
