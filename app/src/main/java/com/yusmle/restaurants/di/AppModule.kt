@@ -33,10 +33,6 @@ val appModule = module {
     }
 
     factory {
-        RemoteDataSource(get())
-    }
-
-    factory {
         RestaurantDatabaseDataMapper()
     }
 

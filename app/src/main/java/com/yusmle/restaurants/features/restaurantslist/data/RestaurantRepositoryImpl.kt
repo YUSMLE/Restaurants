@@ -23,7 +23,7 @@ class RestaurantRepositoryImpl(
     ) = remoteDataSource.fetchRemoteRestaurantsList(pagingMetaData, longitude, latitude).let {
         RestaurantsSearchBundle(
             hasNextPage = it.pagingMeta.hasNextPage,
-            pagingMetaData = it.pagingMeta.pagingMetaData,
+            pagingMetaData = it.pagingMeta.data,
             restaurants = restaurantNetworkDataMapper.transformToModels(it.results)
         )
     }

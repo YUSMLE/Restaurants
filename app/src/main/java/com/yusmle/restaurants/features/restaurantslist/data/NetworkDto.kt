@@ -21,8 +21,8 @@ data class PagingMetaResult(
     @Json(name = "has_next_page")
     val hasNextPage: Boolean,
 
-    @Json(name = "paging_meta_data")
-    val pagingMetaData: String?
+    @Json(name = "data")
+    val data: String?
 )
 
 @JsonClass(generateAdapter = true)

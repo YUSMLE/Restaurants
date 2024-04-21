@@ -1,6 +1,8 @@
 package com.yusmle.restaurants.di
 
 import android.os.Build
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.yusmle.restaurants.Constants
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantApiService
 import okhttp3.Interceptor
@@ -16,6 +18,13 @@ import java.util.concurrent.TimeUnit
  * Provides network-related dependencies
  */
 val networkModules = module {
+
+    factory {
+        Moshi.Builder()
+            // If you have more polymorphic, enum or custom adapters, add them before this line!
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
+    }
 
     factory<Interceptor>(named<HttpLoggingInterceptor>()) {
         HttpLoggingInterceptor().apply {

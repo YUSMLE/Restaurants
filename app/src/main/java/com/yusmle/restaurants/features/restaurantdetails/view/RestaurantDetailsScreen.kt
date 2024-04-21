@@ -10,10 +10,10 @@ import com.yusmle.restaurants.common.foundation.BaseFragment
 class RestaurantDetailsScreen : BaseFragment(R.layout.fragment_restaurants_details) {
 
     override fun setupViews() {
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 
     override fun setupObservers() {
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 }
