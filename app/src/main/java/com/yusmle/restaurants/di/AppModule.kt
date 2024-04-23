@@ -10,6 +10,7 @@ import com.yusmle.restaurants.features.restaurantslist.data.RestaurantDatabaseDa
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantNetworkDataMapper
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantRepositoryImpl
 import com.yusmle.restaurants.framework.memory.InMemoryLocationDataStore
+import com.yusmle.restaurants.framework.preferences.SettingsManager
 import com.yusmle.restaurants.framework.service.location.LocationDataStore
 import com.yusmle.restaurants.framework.service.location.LocationTrackerService
 import org.koin.android.ext.koin.androidContext
@@ -54,5 +55,9 @@ val appModule = module {
 
     factory<LocationProvider> {
         LocationProviderImpl(get())
+    }
+
+    single {
+        SettingsManager(androidContext(), get())
     }
 }
