@@ -4,6 +4,8 @@ import com.yusmle.restaurants.features.restaurantslist.business.Restaurant
 
 sealed class RestaurantsListUserIntention {
 
+    object LocationServiceRequirementsGranted : RestaurantsListUserIntention()
+
     object GetRestaurantsList : RestaurantsListUserIntention()
 
     object GetMoreRestaurantsList : RestaurantsListUserIntention()

@@ -1,6 +1,7 @@
 package com.yusmle.restaurants.features.restaurantslist.view
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
 import com.yusmle.restaurants.framework.service.location.Location
@@ -16,13 +17,14 @@ class RestaurantsListViewModel(
     override fun onInitialize() {
         super.onInitialize()
 
-        // Start getting restaurants list on view model initialization
-        sendIntent(RestaurantsListUserIntention.GetRestaurantsList)
+        // Do some stuffs on view model initialization here...
+        Log.d("RestaurantsListViewModel", "RestaurantsListViewState.Init")
     }
 
     @SuppressLint("MissingPermission")
     override suspend fun handleIntent(intent: RestaurantsListUserIntention) {
         when (intent) {
+            is RestaurantsListUserIntention.LocationServiceRequirementsGranted,
             is RestaurantsListUserIntention.GetRestaurantsList,
             is RestaurantsListUserIntention.GetMoreRestaurantsList,
             is RestaurantsListUserIntention.RetryGettingRestaurantsList,
