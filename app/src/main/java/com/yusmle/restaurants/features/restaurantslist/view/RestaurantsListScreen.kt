@@ -16,6 +16,7 @@ import com.yusmle.restaurants.common.foundation.BaseFragment
 import com.yusmle.restaurants.common.helper.util.isAnyLocationProviderEnabled
 import com.yusmle.restaurants.common.helper.util.isFineLocationPermissionGranted
 import com.yusmle.restaurants.common.helper.util.onClickThrottled
+import com.yusmle.restaurants.common.observeX
 import com.yusmle.restaurants.common.viewBinding
 import com.yusmle.restaurants.databinding.FragmentRestaurantsListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -65,13 +66,22 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
         }
     }
 
-    override fun setupObservers() = with(viewModel) {
+    override fun setupObservers(): Unit = with(viewModel) {
         observeX(viewLifecycleOwner) {
             when (it) {
                 RestaurantsListViewState.Init -> renderInitState()
                 is RestaurantsListViewState.Loading -> renderLoadingState(it)
                 is RestaurantsListViewState.Loaded -> renderLoadedState(it)
                 is RestaurantsListViewState.Failed -> renderFailedState(it)
+            }
+        }
+
+        restaurantsListAdapter.viewActions.observeX(viewLifecycleOwner) {
+            if (it is RestaurantActionEvent.RestaurantItemClicked) {
+                // TODO("Not yet implemented yet")
+            }
+            else if (it is RestaurantActionEvent.RetryItemClicked) {
+                sendIntent(RestaurantsListUserIntention.RetryGettingMoreRestaurantsList)
             }
         }
     }
@@ -171,7 +181,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
     private val locationProvidersRequest = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
-        if(requireContext().isAnyLocationProviderEnabled()) {
+        if (requireContext().isAnyLocationProviderEnabled()) {
             // A location provider is enabled.
             viewModel.sendIntent(RestaurantsListUserIntention.LocationServiceRequirementsGranted)
         }
