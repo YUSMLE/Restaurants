@@ -1,8 +1,10 @@
 package com.yusmle.restaurants.di
 
+import com.yusmle.restaurants.features.restaurantslist.business.LocationProvider
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantRepository
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
 import com.yusmle.restaurants.features.restaurantslist.data.LocalDataSource
+import com.yusmle.restaurants.features.restaurantslist.data.LocationProviderImpl
 import com.yusmle.restaurants.features.restaurantslist.data.RemoteDataSource
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantDatabaseDataMapper
 import com.yusmle.restaurants.features.restaurantslist.data.RestaurantNetworkDataMapper
@@ -48,5 +50,9 @@ val appModule = module {
 
     single<LocationDataStore> {
         InMemoryLocationDataStore()
+    }
+
+    factory<LocationProvider> {
+        LocationProviderImpl(get())
     }
 }

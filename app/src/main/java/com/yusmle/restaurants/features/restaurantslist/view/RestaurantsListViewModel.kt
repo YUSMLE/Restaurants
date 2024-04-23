@@ -3,15 +3,15 @@ package com.yusmle.restaurants.features.restaurantslist.view
 import android.annotation.SuppressLint
 import android.util.Log
 import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
+import com.yusmle.restaurants.features.restaurantslist.business.LocationProvider
 import com.yusmle.restaurants.features.restaurantslist.business.Restaurant
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
 import com.yusmle.restaurants.framework.service.location.Location
-import com.yusmle.restaurants.framework.service.location.LocationTrackerService
 import okhttp3.internal.toImmutableList
 
 class RestaurantsListViewModel(
     private val restaurantsListUseCase: RestaurantsListUseCase,
-    private val locationTrackerService: LocationTrackerService
+    private val locationProvider: LocationProvider
 ) : StatefulIntentViewModel<RestaurantsListUserIntention, RestaurantsListViewState>(
     RestaurantsListViewState.Init
 ) {
@@ -32,7 +32,7 @@ class RestaurantsListViewModel(
             is RestaurantsListUserIntention.RetryGettingRestaurantsList,
             is RestaurantsListUserIntention.RetryGettingMoreRestaurantsList,
             is RestaurantsListUserIntention.RefreshRestaurantsList ->
-                locationTrackerService.getLastLocation {
+                locationProvider.getLastLocation {
                     getRestaurantsList(it)
                 }
         }
