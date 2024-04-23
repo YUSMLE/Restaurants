@@ -3,9 +3,11 @@ package com.yusmle.restaurants.features.restaurantslist.view
 import android.annotation.SuppressLint
 import android.util.Log
 import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
+import com.yusmle.restaurants.features.restaurantslist.business.Restaurant
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
 import com.yusmle.restaurants.framework.service.location.Location
 import com.yusmle.restaurants.framework.service.location.LocationTrackerService
+import okhttp3.internal.toImmutableList
 
 class RestaurantsListViewModel(
     private val restaurantsListUseCase: RestaurantsListUseCase,
@@ -54,9 +56,14 @@ class RestaurantsListViewModel(
                 )
             }.fold({
                 setState {
-                    RestaurantsListViewState.Loaded(hasNextPage,
-                        pagingMetaData,
-                        currentRestaurants)
+                    RestaurantsListViewState.Loaded(
+                        it.restaurantsSearchBundle.hasNextPage,
+                        it.restaurantsSearchBundle.pagingMetaData,
+                        mutableListOf<Restaurant>().apply {
+                            addAll(currentRestaurants)
+                            addAll(it.restaurantsSearchBundle.restaurants)
+                        }.toImmutableList()
+                    )
                 }
             }, {
                 // DEBUG
