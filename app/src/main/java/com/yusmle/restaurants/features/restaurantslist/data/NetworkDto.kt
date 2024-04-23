@@ -31,10 +31,10 @@ data class RestaurantResult(
     val name: String,
 
     @Json(name = "phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
 
     @Json(name = "review_rate")
-    val reviewRate: Int,
+    val reviewRate: Float,
 
     @Json(name = "address")
     val address: String,

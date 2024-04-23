@@ -15,10 +15,10 @@ data class RestaurantEntity(
     val name: String,
 
     @ColumnInfo(name = "phone_number")
-    val phoneNumber: String,
+    val phoneNumber: String?,
 
     @ColumnInfo(name = "review_rate")
-    val reviewRate: Int,
+    val reviewRate: Float,
 
     @ColumnInfo(name = "address")
     val address: String,
