@@ -14,6 +14,12 @@
     <string name="msg_failure_loading_data">Something went wrong with loading data!</string>
     <string name="msg_empty_result">There is no result. \nPlease try another things.</string>
 
+    <string name="label_name">نام:</string>
+    <string name="label_phone_number">شماره تلفن:</string>
+    <string name="label_review_rate">امتیاز:</string>
+    <string name="label_address">آدرس:</string>
+    <string name="label_distance">فاصله:</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

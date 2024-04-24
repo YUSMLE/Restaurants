@@ -15,6 +15,7 @@ import com.yusmle.restaurants.common.autoCleared
 import com.yusmle.restaurants.common.foundation.BaseFragment
 import com.yusmle.restaurants.common.helper.util.isAnyLocationProviderEnabled
 import com.yusmle.restaurants.common.helper.util.isFineLocationPermissionGranted
+import com.yusmle.restaurants.common.helper.util.navigateSafe
 import com.yusmle.restaurants.common.helper.util.onClickThrottled
 import com.yusmle.restaurants.common.observeX
 import com.yusmle.restaurants.common.viewBinding
@@ -78,7 +79,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
 
         restaurantsListAdapter.viewActions.observeX(viewLifecycleOwner) {
             if (it is RestaurantActionEvent.RestaurantItemClicked) {
-                // TODO("Not yet implemented yet")
+                navigateToRestaurantDetailsScreen(it.name)
             }
             else if (it == RestaurantActionEvent.RetryItemClicked) {
                 sendIntent(RestaurantsListUserIntention.RetryGettingMoreRestaurantsList)
@@ -131,6 +132,11 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
             restaurantsListAdapter.items = it
         }
     }
+
+    private fun navigateToRestaurantDetailsScreen(restaurantName: String) =
+        navigateSafe(
+            RestaurantsListScreenDirections.openRestaurantDetailsScreen(restaurantName)
+        )
 
     /**
      * Before you perform the actual permission request, check whether your app already has the
