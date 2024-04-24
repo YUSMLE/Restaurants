@@ -92,7 +92,8 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
 
     private fun renderLoadingState(state: RestaurantsListViewState.Loading) = with(binding) {
         restaurantsList.isVisible = state.restaurants.isNotEmpty()
-        loadingOverlay.root.isVisible = state.restaurants.isEmpty()
+        loadingOverlay.root.isVisible = state.restaurants.isEmpty() && state.refreshing.not()
+        swipeContainer.isRefreshing = state.refreshing
         retryView.root.isVisible = false
         emptyResultView.root.isVisible = false
 
@@ -107,6 +108,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
     private fun renderLoadedState(state: RestaurantsListViewState.Loaded) = with(binding) {
         restaurantsList.isVisible = state.restaurants.isNotEmpty()
         loadingOverlay.root.isVisible = false
+        swipeContainer.isRefreshing = false
         retryView.root.isVisible = false
         emptyResultView.root.isVisible = state.restaurants.isEmpty()
 
@@ -118,6 +120,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
     private fun renderFailedState(state: RestaurantsListViewState.Failed) = with(binding) {
         restaurantsList.isVisible = state.restaurants.isNotEmpty()
         loadingOverlay.root.isVisible = false
+        swipeContainer.isRefreshing = false
         retryView.root.isVisible = state.restaurants.isEmpty()
         emptyResultView.root.isVisible = false
 

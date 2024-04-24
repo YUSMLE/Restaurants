@@ -3,6 +3,7 @@ package com.yusmle.restaurants.features.restaurantslist.view
 import android.annotation.SuppressLint
 import android.util.Log
 import com.yusmle.restaurants.common.foundation.StatefulIntentViewModel
+import com.yusmle.restaurants.features.restaurantslist.business.ClearRestaurantsListUseCase
 import com.yusmle.restaurants.features.restaurantslist.business.LocationProvider
 import com.yusmle.restaurants.features.restaurantslist.business.Restaurant
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
@@ -11,6 +12,7 @@ import okhttp3.internal.toImmutableList
 
 class RestaurantsListViewModel(
     private val restaurantsListUseCase: RestaurantsListUseCase,
+    private val clearRestaurantsListUseCase: ClearRestaurantsListUseCase,
     private val locationProvider: LocationProvider
 ) : StatefulIntentViewModel<RestaurantsListUserIntention, RestaurantsListViewState>(
     RestaurantsListViewState.Init
@@ -30,22 +32,32 @@ class RestaurantsListViewModel(
             is RestaurantsListUserIntention.GetRestaurantsList,
             is RestaurantsListUserIntention.GetMoreRestaurantsList,
             is RestaurantsListUserIntention.RetryGettingRestaurantsList,
-            is RestaurantsListUserIntention.RetryGettingMoreRestaurantsList,
-            is RestaurantsListUserIntention.RefreshRestaurantsList ->
+            is RestaurantsListUserIntention.RetryGettingMoreRestaurantsList ->
                 locationProvider.getLastLocation {
                     getRestaurantsList(it, currentState == RestaurantsListViewState.Init)
                 }
+            is RestaurantsListUserIntention.RefreshRestaurantsList ->
+                refreshRestaurantsList()
         }
     }
 
-    private fun getRestaurantsList(location: Location?, offlineAllowed: Boolean) {
+    private fun getRestaurantsList(
+        location: Location?,
+        offlineAllowed: Boolean,
+        refreshing: Boolean = false
+    ) {
         if (currentState is RestaurantsListViewState.Loading ||
             currentState.hasNextPage.not()
         ) return
 
         launch {
             setState {
-                RestaurantsListViewState.Loading(hasNextPage, pagingMetaData, currentRestaurants)
+                RestaurantsListViewState.Loading(
+                    currentRestaurants,
+                    hasNextPage,
+                    pagingMetaData,
+                    refreshing
+                )
             }
 
             runCatching {
@@ -61,12 +73,12 @@ class RestaurantsListViewModel(
             }.fold({
                 setState {
                     RestaurantsListViewState.Loaded(
-                        it.restaurantsSearchBundle.hasNextPage,
-                        it.restaurantsSearchBundle.pagingMetaData,
                         mutableListOf<Restaurant>().apply {
                             addAll(currentRestaurants)
                             addAll(it.restaurantsSearchBundle.restaurants)
-                        }.toImmutableList()
+                        }.toImmutableList(),
+                        it.restaurantsSearchBundle.hasNextPage,
+                        it.restaurantsSearchBundle.pagingMetaData
                     )
                 }
             }, {
@@ -75,14 +87,30 @@ class RestaurantsListViewModel(
 
                 setState {
                     RestaurantsListViewState.Failed(
+                        currentRestaurants,
                         hasNextPage,
                         pagingMetaData,
-                        currentRestaurants,
                         it.message,
                         it
                     )
                 }
             })
+        }
+    }
+
+    private fun refreshRestaurantsList() {
+        if (currentState is RestaurantsListViewState.Loading) return
+
+        launch {
+            setState {
+                RestaurantsListViewState.Init
+            }
+
+            clearRestaurantsListUseCase.execute(Unit)
+
+            locationProvider.getLastLocation {
+                getRestaurantsList(it, offlineAllowed = false, refreshing = true)
+            }
         }
     }
 }

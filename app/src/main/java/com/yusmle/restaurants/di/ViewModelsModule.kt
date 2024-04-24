@@ -10,6 +10,6 @@ import org.koin.dsl.module
 val viewModelsModule = module {
 
     viewModel {
-        RestaurantsListViewModel(get(), get())
+        RestaurantsListViewModel(get(), get(), get())
     }
 }

@@ -2,6 +2,7 @@ package com.yusmle.restaurants.di
 
 import com.yusmle.restaurants.common.DispatcherProvider
 import com.yusmle.restaurants.common.DispatcherProviderImpl
+import com.yusmle.restaurants.features.restaurantslist.business.ClearRestaurantsListUseCase
 import com.yusmle.restaurants.features.restaurantslist.business.LocationProvider
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantRepository
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
@@ -29,6 +30,10 @@ val appModule = module {
 
     factory {
         RestaurantsListUseCase(get(), get())
+    }
+
+    factory {
+        ClearRestaurantsListUseCase(get())
     }
 
     factory<RestaurantRepository> {
