@@ -67,7 +67,7 @@ class LocationTrackerService(private val context: Context) {
 
     /**
      * Gets a fresher, more accurate location more consistently. However, this method can cause
-     * active location computation to occur on the device
+     * active location computation to occur on the device.
      */
     @RequiresPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     fun getCurrentLocation(

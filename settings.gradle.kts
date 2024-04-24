@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Restaurants"
 include(":app")
+include(":network-connectivity")

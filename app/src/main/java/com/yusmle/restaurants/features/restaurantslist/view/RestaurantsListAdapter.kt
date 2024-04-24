@@ -85,10 +85,10 @@ class RetryViewHolder(
     private val viewBinding: ItemRetryBinding,
     private val viewLifecycleOwner: LifecycleOwner,
     private val dispatchAction: (viewAction: RestaurantActionEvent) -> Unit,
-) : BaseViewHolder<RestaurantListItem.RestaurantItem>(viewBinding) {
+) : BaseViewHolder<RestaurantListItem.RetryItem>(viewBinding) {
 
-    override fun bindData(data: RestaurantListItem.RestaurantItem) {
-        viewBinding.root.onClickThrottled {
+    override fun bindData(data: RestaurantListItem.RetryItem) {
+        viewBinding.retryButton.onClickThrottled {
             dispatchAction(RestaurantActionEvent.RetryItemClicked)
         }
     }

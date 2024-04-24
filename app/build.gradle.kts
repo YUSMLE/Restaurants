@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -14,7 +15,7 @@ android {
         //noinspection OldTargetApi
         targetSdk = 33
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0 (by Yousef Behfar)"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,6 +39,9 @@ android {
 
 //noinspection GradleDependency
 dependencies {
+
+    /* Modules */
+    implementation(project(":network-connectivity"))
 
     /* Testing */
     testImplementation("junit:junit:4.13.2")
