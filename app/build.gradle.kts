@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -38,6 +39,9 @@ android {
 
 //noinspection GradleDependency
 dependencies {
+
+    /* Modules */
+    implementation(project(":network-connectivity"))
 
     /* Testing */
     testImplementation("junit:junit:4.13.2")

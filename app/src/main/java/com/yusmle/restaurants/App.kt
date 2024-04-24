@@ -1,6 +1,7 @@
 package com.yusmle.restaurants
 
 import android.app.Application
+import com.yusmle.network.connectivity.ConnectivityStateHolder.registerConnectivityBroadcaster
 import com.yusmle.restaurants.di.appModule
 import com.yusmle.restaurants.di.databaseModule
 import com.yusmle.restaurants.di.networkModules
@@ -16,6 +17,7 @@ class App : Application() {
         super.onCreate()
 
         setupKoin()
+        setupConnectivityCallbacks()
     }
 
     private fun setupKoin() {
@@ -29,5 +31,12 @@ class App : Application() {
                 viewModelsModule
             ))
         }
+    }
+
+    /**
+     * Network Connectivity events with Android LifeCycle Components
+     */
+    private fun setupConnectivityCallbacks() {
+        registerConnectivityBroadcaster()
     }
 }

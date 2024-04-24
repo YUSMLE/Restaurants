@@ -4,6 +4,8 @@ import com.yusmle.restaurants.features.restaurantslist.business.Restaurant
 
 sealed class RestaurantsListUserIntention {
 
+    object LocationServiceRequirementsGranted : RestaurantsListUserIntention()
+
     object GetRestaurantsList : RestaurantsListUserIntention()
 
     object GetMoreRestaurantsList : RestaurantsListUserIntention()
@@ -16,29 +18,31 @@ sealed class RestaurantsListUserIntention {
 }
 
 sealed class RestaurantsListViewState(
+    open val restaurants: List<Restaurant>,
     open val hasNextPage: Boolean,
     open val pagingMetaData: String? = null
 ) {
 
-    object Init : RestaurantsListViewState(true)
+    object Init : RestaurantsListViewState(listOf(), true)
 
     data class Loading(
+        override val restaurants: List<Restaurant>,
         override val hasNextPage: Boolean,
         override val pagingMetaData: String?,
-        val restaurants: List<Restaurant>
-    ) : RestaurantsListViewState(hasNextPage, pagingMetaData)
+        val refreshing: Boolean = false
+    ) : RestaurantsListViewState(restaurants, hasNextPage, pagingMetaData)
 
     data class Loaded(
+        override val restaurants: List<Restaurant>,
         override val hasNextPage: Boolean,
-        override val pagingMetaData: String?,
-        val restaurants: List<Restaurant>
-    ) : RestaurantsListViewState(hasNextPage, pagingMetaData)
+        override val pagingMetaData: String?
+    ) : RestaurantsListViewState(restaurants, hasNextPage, pagingMetaData)
 
     data class Failed(
+        override val restaurants: List<Restaurant>,
         override val hasNextPage: Boolean,
         override val pagingMetaData: String?,
-        val restaurants: List<Restaurant>,
         val message: String?,
         val throwable: Throwable?
-    ) : RestaurantsListViewState(hasNextPage, pagingMetaData)
+    ) : RestaurantsListViewState(restaurants, hasNextPage, pagingMetaData)
 }

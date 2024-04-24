@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,29 +7,202 @@
     tools:context=".features.restaurantdetails.view.RestaurantDetailsScreen">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/restaurantDetailsViewGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <Button
-            android:id="@+id/button_second"
+        <RatingBar
+            android:id="@+id/reviewRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/previous"
-            app:layout_constraintBottom_toTopOf="@id/textview_second"
+            android:layout_marginTop="32dp"
+            android:rating="3.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textview_second"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/nameIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reviewRate"
+            app:srcCompat="@drawable/ic_baseline_restaurant_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_name"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/md_grey_600"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/nameIcon"
+            app:layout_constraintEnd_toStartOf="@id/nameIcon"
+            app:layout_constraintTop_toTopOf="@id/nameIcon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_name"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/md_grey_600"
+            app:layout_constraintEnd_toEndOf="@id/nameLabel"
+            app:layout_constraintTop_toBottomOf="@id/nameLabel" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/phoneNumberIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:srcCompat="@drawable/ic_baseline_phone_enabled_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/phoneNumberLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_phone_number"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/md_grey_600"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/phoneNumberIcon"
+            app:layout_constraintEnd_toStartOf="@id/phoneNumberIcon"
+            app:layout_constraintTop_toTopOf="@id/phoneNumberIcon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_phone_number"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/md_grey_600"
+            app:layout_constraintEnd_toEndOf="@id/phoneNumberLabel"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumberLabel" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/addressIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumber"
+            app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/addressLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_address"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/md_grey_600"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/addressIcon"
+            app:layout_constraintEnd_toStartOf="@id/addressIcon"
+            app:layout_constraintTop_toTopOf="@id/addressIcon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ellipsize="marquee"
+            android:gravity="start"
+            android:lineSpacingExtra="6dp"
+            android:maxLines="3"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:text="@string/label_address"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/md_grey_600"
+            app:layout_constraintEnd_toEndOf="@id/addressLabel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
+            app:layout_constraintTop_toBottomOf="@id/addressLabel" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/distanceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/address"
+            app:srcCompat="@drawable/ic_baseline_social_distance_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/distanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_distance"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="@color/md_grey_600"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/distanceIcon"
+            app:layout_constraintEnd_toStartOf="@id/distanceIcon"
+            app:layout_constraintTop_toTopOf="@id/distanceIcon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/label_distance"
+            android:textAppearance="?textAppearanceBody1"
+            android:textColor="@color/md_grey_600"
+            app:layout_constraintEnd_toEndOf="@id/distanceLabel"
+            app:layout_constraintTop_toBottomOf="@id/distanceLabel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/loadingOverlay"
+        layout="@layout/layout_loading_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone" />
+
+    <include
+        android:id="@+id/retryView"
+        layout="@layout/layout_retry_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone" />
+
+    <include
+        android:id="@+id/emptyResultView"
+        layout="@layout/layout_empty_result_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone" />
+</FrameLayout>
