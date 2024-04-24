@@ -1,5 +1,7 @@
 package com.yusmle.restaurants.di
 
+import com.yusmle.restaurants.common.DispatcherProvider
+import com.yusmle.restaurants.common.DispatcherProviderImpl
 import com.yusmle.restaurants.features.restaurantslist.business.LocationProvider
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantRepository
 import com.yusmle.restaurants.features.restaurantslist.business.RestaurantsListUseCase
@@ -21,8 +23,12 @@ import org.koin.dsl.module
  */
 val appModule = module {
 
+    single<DispatcherProvider> {
+        DispatcherProviderImpl()
+    }
+
     factory {
-        RestaurantsListUseCase(get())
+        RestaurantsListUseCase(get(), get())
     }
 
     factory<RestaurantRepository> {
