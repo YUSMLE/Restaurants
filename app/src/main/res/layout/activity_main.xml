@@ -28,5 +28,7 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_outline_refresh_24" />
+        android:foregroundTint="@color/colorAccent"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_baseline_info_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

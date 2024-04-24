@@ -65,6 +65,9 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
         retryView.retryButton.onClickThrottled {
             viewModel.sendIntent(RestaurantsListUserIntention.RetryGettingRestaurantsList)
         }
+
+        // Initialize loading data
+        checkLocationPermissionRequirement()
     }
 
     override fun setupObservers(): Unit = with(viewModel) {
@@ -87,9 +90,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
         }
     }
 
-    private fun renderInitState() {
-        checkLocationPermissionRequirement()
-    }
+    private fun renderInitState() {}
 
     private fun renderLoadingState(state: RestaurantsListViewState.Loading) = with(binding) {
         restaurantsList.isVisible = state.restaurants.isNotEmpty()
