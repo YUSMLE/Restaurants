@@ -80,7 +80,7 @@ class RestaurantsListScreen : BaseFragment(R.layout.fragment_restaurants_list) {
             if (it is RestaurantActionEvent.RestaurantItemClicked) {
                 // TODO("Not yet implemented yet")
             }
-            else if (it is RestaurantActionEvent.RetryItemClicked) {
+            else if (it == RestaurantActionEvent.RetryItemClicked) {
                 sendIntent(RestaurantsListUserIntention.RetryGettingMoreRestaurantsList)
             }
         }

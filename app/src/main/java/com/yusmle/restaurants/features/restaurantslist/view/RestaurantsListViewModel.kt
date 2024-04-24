@@ -33,13 +33,15 @@ class RestaurantsListViewModel(
             is RestaurantsListUserIntention.RetryGettingMoreRestaurantsList,
             is RestaurantsListUserIntention.RefreshRestaurantsList ->
                 locationProvider.getLastLocation {
-                    getRestaurantsList(it)
+                    getRestaurantsList(it, currentState == RestaurantsListViewState.Init)
                 }
         }
     }
 
-    private fun getRestaurantsList(location: Location?) {
-        if (currentState is RestaurantsListViewState.Loading) return
+    private fun getRestaurantsList(location: Location?, offlineAllowed: Boolean) {
+        if (currentState is RestaurantsListViewState.Loading ||
+            currentState.hasNextPage.not()
+        ) return
 
         launch {
             setState {
@@ -49,9 +51,11 @@ class RestaurantsListViewModel(
             runCatching {
                 restaurantsListUseCase.execute(
                     RestaurantsListUseCase.Input(
-                        currentState.pagingMetaData,
-                        location?.longitude ?: Double.MIN_VALUE,
-                        location?.latitude ?: Double.MAX_VALUE
+                        firstPage = currentState.currentRestaurants.isEmpty(),
+                        offlineAllowed = offlineAllowed,
+                        pagingMetaData = currentState.pagingMetaData,
+                        longitude = location?.longitude ?: Double.MIN_VALUE,
+                        latitude = location?.latitude ?: Double.MAX_VALUE
                     )
                 )
             }.fold({
